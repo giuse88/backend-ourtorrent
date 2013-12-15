@@ -6,6 +6,8 @@
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
+var hello = require('./routes/helloworld'); 
+var upload = require('./routes/upload');
 var http = require('http');
 var path = require('path');
 
@@ -20,6 +22,7 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+app.use(express.multipart());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 app.use(app.router);
@@ -32,6 +35,8 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+app.get('/helloworld', hello.helloworld); 
+app.post('/upload', upload.upload);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
