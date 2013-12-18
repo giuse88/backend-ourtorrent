@@ -8,6 +8,7 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var hello = require('./routes/helloworld'); 
 var upload = require('./routes/upload');
+var info = require('./routes/fileinfo');
 var http = require('http');
 var path = require('path');
 
@@ -34,6 +35,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/fileinfo/:name', info.getFileInfo); 
 app.get('/users', user.list);
 app.get('/helloworld', hello.helloworld); 
 app.post('/upload', upload.upload);
