@@ -6,3 +6,19 @@ body {
 a {
   color: #00B7FF;
 }
+
+h1 {
+  text-align : center; 
+}
+
+#torrent_pieces {
+   width : 500px; 
+   text-align:center; 
+   margin-left:30%;
+}
+
+#torrent_pieces li {
+  padding: 10px;
+  margin-bottom: 2px;
+  background: red;
+}

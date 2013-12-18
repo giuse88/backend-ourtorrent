@@ -1,0 +1,23 @@
+extends layout
+
+
+block content
+  h1 OUR TORRENT :D  
+  
+  #torrent_info
+    h4 Torent Info :
+    p Torent File  :  #{torrent.name} 
+    p Size    =  #{torrent.size} 
+    p Tracker =  #{torrent.tracker}; 
+    p Comment =  #{torrent.comment}; 
+    p Piece Size  = #{torrent.pieceSize}; 
+    p Piece Number = #{torrent.pieceNumber}; 
+    p Last Piece Size = #{torrent.sizeLastPiece}  
+  
+  #torrent_pieces 
+    h4 Torrent Pieces  : 
+    ol
+      each val in torrent.pieces 
+        li= val
+  script
+    console.log(!{JSON.stringify(torrent)})
