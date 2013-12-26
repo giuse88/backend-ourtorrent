@@ -1,5 +1,6 @@
 var fs=require('fs'); 
 var bencode = require('bencode');
+var crypto = require('crypto'); 
 
 module.exports =  {
 
@@ -24,7 +25,14 @@ module.exports =  {
   
     return pieces_array;  
   }
-  
+ 
+  var hash = function (info) {
+     var shasum = crypto.createHash('sha1');
+     shasum.update(bencode.encode(info));
+     return shasum.digest('hex');
+  }
+
+ 
   // PUBLIC  
   this.size = decodedData.info.length;
   this.name = decodedData.info.name.toString();
@@ -35,8 +43,9 @@ module.exports =  {
   this.sizeLastPiece = this.size % this.pieceSize;
   this.pieces = get_torrent_piece(decodedData.info.pieces);
   this.tracker = decodedData.announce.toString();
+  this.hash = hash(decodedData.info);
+  this.hash = this.hash.toString('hex'); 
   this.error = null; 
-
   return this;
   } 
 

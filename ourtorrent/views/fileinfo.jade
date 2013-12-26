@@ -1,6 +1,5 @@
 extends layout
 
-
 block content
   h1 OUR TORRENT :D  
   
@@ -9,6 +8,7 @@ block content
     p Torent File  :  #{torrent.name} 
     p Size    =  #{torrent.size} 
     p Tracker =  #{torrent.tracker}; 
+    p Hash  =  #{torrent.hash}; 
     p Comment =  #{torrent.comment}; 
     p Piece Size  = #{torrent.pieceSize}; 
     p Piece Number = #{torrent.pieceNumber}; 
@@ -20,4 +20,4 @@ block content
       each val in torrent.pieces 
         li= val
   script
-    console.log(!{JSON.stringify(torrent)})
+    connectToServer("#{torrent.url}"); 

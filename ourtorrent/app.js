@@ -12,6 +12,7 @@ var info = require('./routes/fileinfo');
 var http = require('http');
 var path = require('path');
 
+
 var app = express();
 
 // all environments
@@ -40,6 +41,11 @@ app.get('/users', user.list);
 app.get('/helloworld', hello.helloworld); 
 app.post('/upload', upload.upload);
 
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app); 
+io = require('socket.io').listen(server);
+
+server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+
